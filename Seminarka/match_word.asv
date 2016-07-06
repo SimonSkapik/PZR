@@ -1,0 +1,16 @@
+function [ index, word ] = match_word( dictionary,signal,fs )
+    
+    [~,~,cut] = get_word(signal, fs);
+    word_params = get_word_param_vector(cut, fs);
+    diff = zeros(1,size(dictionary,2));
+    for indx = 1:size(dictionary,2);
+        dix_word = dictionary{1,indx};
+        mod_dix_word = change_ref_length(dix_word,size(word_params,2));
+        diff(indx) = sum(abs(mod_dix_word(:,) - word_params(:,)));
+    end
+    [~,order] = sort(diff);
+    index = order(1);
+    word = dictionary{2,order(1)};
+
+end
+

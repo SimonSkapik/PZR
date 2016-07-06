@@ -1,0 +1,12 @@
+function [ param_vector ] = get_word_param_vector( signal, fs )
+
+    frame_size = fs/20;
+    subframe_size = frame_size/2;
+    subframes_count = idivide(int32(size(input_word,1)), int32(subframe_size));
+
+    signal = (signal.*(2^15));
+    signal_energy = signal.*signal;
+    
+    
+end
+
